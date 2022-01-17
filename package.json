@@ -11,6 +11,8 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.2.5",
     "@mui/material": "latest",
     "react": "latest",
     "react-dom": "latest",

@@ -7,6 +7,8 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
 import { TextField, Button } from '@mui/material';
+import IconButton from "@material-ui/core/IconButton";
+import ClearIcon from '@mui/icons-material/Clear';
 
 const n_person = 3;
 const initialValues = {};
@@ -19,12 +21,26 @@ persons.forEach(person => {
 
 export default function Engine() {
 
-    const [values, setValues] = useState(initialValues);
+    const [inputList, setInputList] = useState([{ name: "", address: "" }]);
+ 
+    // handle input change
+    const handleInputChange = (e, index) => {
+      const { name, value } = e.target;
+      const list = [...inputList];
+      list[index][name] = value;
+      setInputList(list);
+    };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setValues({ ...values, [name]: value });
-        console.log(values);
+    // handle click event of the Remove button
+    const handleRemoveClick = index => {
+        const list = [...inputList];
+        list.splice(index, 1);
+        setInputList(list);
+    };
+ 
+    // handle click event of the Add button
+    const handleAddClick = () => {
+        setInputList([...inputList, { name: "", address: "" }]);
     };
 
     const handleSubmit = (e) => {
@@ -33,32 +49,36 @@ export default function Engine() {
     };
 
     return(
-        <Container maxWidth="sm" spacing={24}>
+        <Container maxWidth="md" spacing={24}>
             <Box sx={{ my: 4, p:4}}>
-                <form>
-                    {persons.map((person, i) => {
-                        return <TextField
-                        key={i}
-                        id={person}
-                        name={person}
-                        label={person}
-                        value={values[person]}
-                        onChange={handleInputChange}
-                        margin="normal"
-                        fullWidth
-                        />
-                    })}
-                    <Button 
-                        type="submit"
-                        onClick={handleSubmit}
-                    >Submit</Button>
-                </form>
+
+                {inputList.map((x, i) => {
+                    return (
+                        <div className="box">
+                            <TextField
+                                name="name"
+                                placeholder="Enter Name"
+                                value={x.name}
+                                onChange={e => handleInputChange(e, i)}
+                            />
+                            <TextField
+                                className="ml10"
+                                name="address"
+                                placeholder="Enter address"
+                                value={x.address}
+                                onChange={e => handleInputChange(e, i)}
+                            />
+                            <IconButton>
+                                <ClearIcon onClick={() => handleRemoveClick(i)} />
+                            </IconButton>
+                        </div>
+                    );
+                })}
+                <Button fullWidth variant='contained' onClick={handleAddClick}>Add person</Button>
+                <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
             </Box>
         </Container>
     );
-    <Box sx={{ my: 4 }}>
-
-    </Box>
 
 };
 
