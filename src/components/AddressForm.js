@@ -11,7 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from '@mui/icons-material/Clear';
 
 
-export default function AddressForm({ submitAddresses }) {
+export default function AddressForm({ setAddresses }) {
 
     const [inputList, setInputList] = useState([{ name: "", address: "" }]);
  
@@ -35,10 +35,10 @@ export default function AddressForm({ submitAddresses }) {
         setInputList([...inputList, { name: "", address: "" }]);
     };
 
+    // pass up state when we submit address
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputList);
-        submitAddresses(inputList);
+        setAddresses(inputList);
     };
 
     return(
@@ -67,7 +67,6 @@ export default function AddressForm({ submitAddresses }) {
                     );
                 })}
                 <Button fullWidth variant='contained' onClick={handleAddClick} key="Add person">Add person</Button>
-                <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
                 <Button fullWidth variant='contained' onClick={handleSubmit}>Submit addresses</Button>
             </Box>
         </Container>
