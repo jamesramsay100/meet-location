@@ -35,9 +35,9 @@ export default function AddressForm({ setAddresses }) {
         setInputList([...inputList, { name: "", address: "" }]);
     };
 
+    // pass up state when we submit address
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputList);
         setAddresses(inputList);
     };
 
@@ -67,7 +67,6 @@ export default function AddressForm({ setAddresses }) {
                     );
                 })}
                 <Button fullWidth variant='contained' onClick={handleAddClick} key="Add person">Add person</Button>
-                <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
                 <Button fullWidth variant='contained' onClick={handleSubmit}>Submit addresses</Button>
             </Box>
         </Container>
