@@ -9,7 +9,7 @@ export default function Engine() {
     return(
         // <AddressForm submitAddresses={inputList => setAddresses(inputList)} />
         <div>
-            <AddressForm submitAddresses={inputList => setAddresses(inputList)} />
+            <AddressForm setAddresses={setAddresses} />
             <div style={{ marginTop: 20 }}>{JSON.stringify(addresses)}</div>
         </div>
     );
