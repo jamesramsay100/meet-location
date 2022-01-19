@@ -11,8 +11,6 @@ export default function BaseMap ({ coordinates }) {
 
   mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
-
-
   /**
    * 
    * Entier map re-renders when coordinates change
@@ -20,7 +18,6 @@ export default function BaseMap ({ coordinates }) {
    * 
    */
   useEffect(() => {
-
 
     // calculate average latitude and longitude from coordinates array with central london as first point
     var averageLat = 51.5080;
@@ -42,6 +39,7 @@ export default function BaseMap ({ coordinates }) {
       zoom: 9,
     });
 
+    // add navigation control
     const nav = new mapboxgl.NavigationControl();
     map.addControl(nav, "top-right");   
 

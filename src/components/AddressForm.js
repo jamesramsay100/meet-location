@@ -11,6 +11,11 @@ import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from '@mui/icons-material/Clear';
 
 
+/**
+ * 
+ * Simple that takes name and address and passes up to 'address' state in Engine component
+ * 
+ */
 export default function AddressForm({ setAddresses }) {
 
     const [inputList, setInputList] = useState([{ name: "", address: "" }]);

@@ -4,10 +4,18 @@ import AddressForm from './AddressForm';
 import addressesToCoordinates from './AddressesToCoordinates';
 import BaseMap from './BaseMap';
 
+
+/**
+ * 
+ * Main component that renders the AddressForm and BaseMap components
+ * 
+ * Houses the state of the addresses and coordinates and calculated meet locations
+ * 
+ */
 export default function Engine() {
 
-    const [addresses, setAddresses] = useState([]);
-    const [coordinates, setCoordinates] = useState([]);
+    const [addresses, setAddresses] = useState([]);  // names and addresses/post codes
+    const [coordinates, setCoordinates] = useState([]);  // names and lat-long coordinates
 
     // update coordinates when addresses change
     useEffect(() => {
