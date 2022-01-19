@@ -15,9 +15,11 @@
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "latest",
     "axios": "^0.25.0",
+    "mapbox-gl": "^2.6.1",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "latest",
+    "sass": "^1.49.0"
   },
   "browserslist": {
     "production": [

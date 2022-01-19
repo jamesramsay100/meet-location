@@ -27,7 +27,7 @@ export default async function addressesToCoordinates (addresses) {
             }
             try {
                 const response = await axios(config)
-                console.log(response.data)
+                // console.log(response.data)
                 coordinates.push(
                     {
                         name: address.name,
