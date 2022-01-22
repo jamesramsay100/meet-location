@@ -10,14 +10,32 @@ import Engine from './components/Engine';
 
 export default function App() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Calulate optimum meeting location
-        </Typography>
+    <div
+      // this just fills the full page width
+      id='maindiv'
+      style={{
+        width: '100%',
+        height: '100vh',
+        textAlign: "center"
+      }}
+    > 
+      <Grid 
+        // grid container just fills width and aligns content to center
+        id="container"
+        container
+        direction="column"
+        justiftContent="center"
+        alignItems="center"
+      > 
+        <Box sx={{ my: 4, mx: 2 }}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Calulate optimum meeting location
+          </Typography>
+        </Box>
         <Engine />
         <Copyright />
-      </Box>
-    </Container>
+      </Grid>
+    </div>
+    
   );
 }
