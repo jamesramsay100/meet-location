@@ -10,7 +10,7 @@ import BaseMap from './BaseMap';
  * 
  * Main component that renders the AddressForm and BaseMap components
  * 
- * Houses the state of the addresses and coordinates and calculated meet locations
+ * Houses the state of the addresses, coordinates and calculated meet locations
  * 
  */
 export default function Engine() {

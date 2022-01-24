@@ -6,6 +6,8 @@ import { stations } from './london_station_locations';
  * Takes person locations and calculates the travel time 
  * to each station in json list
  * 
+ * Orders list of stations by average or max travel time for each of the persons
+ * 
  * Uses https://docs.traveltime.com/api/reference/distance-matrix#departure_searches
  * to get the travel times.
  * 
@@ -13,6 +15,7 @@ import { stations } from './london_station_locations';
  */
 export default async function calculateTravelTime (coordinates) {
 
+    // resturn empty array if no coordinates (i.e. no people)
     if (coordinates.length === 0) {
         return []
     }
@@ -41,6 +44,13 @@ export default async function calculateTravelTime (coordinates) {
     }
 
 
+    /**
+     * 
+     * Loop though each station
+     *  - Collect travel time from each starting coordinate
+     *  - Calculate average and max travel time from all the starting coordinates
+     * 
+     */
     function rankDestByTravelTime(response) {
         
         var travelTimes = [];
@@ -84,12 +94,13 @@ export default async function calculateTravelTime (coordinates) {
                     count += 1;
                 }
             });
+            // calculate average and max travel time from each start point
             entry.averageTime = sumTime / count;
             entry.maxTime = maxTime;
             travelTimes.push(entry);
         });
 
-
+        // order the list of stations by average or max travel time
         // travelTimes.sort((a, b) => (a.averageTime > b.averageTime) ? 1 : -1);
         travelTimes.sort((a, b) => (a.maxTime > b.maxTime) ? 1 : -1);
 
@@ -97,6 +108,11 @@ export default async function calculateTravelTime (coordinates) {
         return travelTimes;
     }
 
+    /**
+     * 
+     * Generates the request body for the travel time api
+     * 
+     */
     function createRequestBody() {
         var data = {
             "locations": [],
