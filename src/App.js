@@ -24,7 +24,6 @@ export default function App() {
         id="container"
         container
         direction="column"
-        justiftContent="center"
         alignItems="center"
       > 
         <Box sx={{ my: 4, mx: 2 }}>

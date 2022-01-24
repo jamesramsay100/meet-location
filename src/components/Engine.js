@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import AddressForm from './AddressForm';
 import addressesToCoordinates from './AddressesToCoordinates';
+import calculateTravelTime from './CalculateTravelTime';
 import BaseMap from './BaseMap';
 
 
@@ -16,16 +17,23 @@ export default function Engine() {
 
     const [addresses, setAddresses] = useState([]);  // names and addresses/post codes
     const [coordinates, setCoordinates] = useState([]);  // names and lat-long coordinates
+    const [travelTimes, setTravelTimes] = useState([]);  // names and travel times
 
     // update coordinates when addresses change
     useEffect(() => {
         addressesToCoordinates(addresses).then(coordinates => setCoordinates(coordinates));
+        console.log("coordinates: ", coordinates);
     }, [addresses]);
+
+    useEffect(() => {
+        calculateTravelTime(coordinates).then(times => setTravelTimes(times));
+        console.log("travelTimes: ", travelTimes);
+    }, [coordinates]);
 
     return(
         <div>
             <AddressForm setAddresses={setAddresses} />
-            <BaseMap coordinates={coordinates}/>
+            <BaseMap coordinates={coordinates} travelTimes={travelTimes}/>
             <div style={{ marginTop: 20, fontSize: '10px' }}>Coordinates for debugging...</div>
             <div style={{ fontSize: '10px' }}>{JSON.stringify(coordinates)}</div>
         </div>

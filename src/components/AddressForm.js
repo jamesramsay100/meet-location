@@ -50,7 +50,7 @@ export default function AddressForm({ setAddresses }) {
         <Box sx={{ my: 0, mx: 2 }}>
             {inputList.map((x, i) => {
                 return (
-                    <Grid container xs={12} key={i} direction="row">
+                    <Grid container key={i} direction="row">
                         <Grid item xs={5}>
                             <TextField
                                 name="name"
