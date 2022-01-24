@@ -4,7 +4,7 @@ import AddressForm from './AddressForm';
 import addressesToCoordinates from './AddressesToCoordinates';
 import calculateTravelTime from './CalculateTravelTime';
 import BaseMap from './BaseMap';
-
+import Box from '@mui/material/Box';
 
 /**
  * 
@@ -31,11 +31,18 @@ export default function Engine() {
     }, [coordinates]);
 
     return(
-        <div>
+        <Box
+            m='auto'  // centralise
+            sx={{
+                maxWidth: '800px',  // no need to use full width on large monitors
+                bgcolor: 'background.paper', 
+                borderRadius: '6px',
+            }}
+        >
             <AddressForm setAddresses={setAddresses} />
             <BaseMap coordinates={coordinates} travelTimes={travelTimes}/>
             <div style={{ marginTop: 20, fontSize: '10px' }}>Coordinates for debugging...</div>
             <div style={{ fontSize: '10px' }}>{JSON.stringify(coordinates)}</div>
-        </div>
+        </Box>
     );
 };

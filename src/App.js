@@ -16,24 +16,18 @@ export default function App() {
       style={{
         width: '100%',
         height: '100vh',
-        textAlign: "center"
+        textAlign: "center",
+        backgroundColor: '#F2F3F4',
+        // alignItems: 'center'
       }}
     > 
-      <Grid 
-        // grid container just fills width and aligns content to center
-        id="container"
-        container
-        direction="column"
-        alignItems="center"
-      > 
-        <Box sx={{ my: 4, mx: 2 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Calulate optimum meeting location
-          </Typography>
-        </Box>
-        <Engine />
-        <Copyright />
-      </Grid>
+      <Box sx={{ my: 4, mx: 2 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Calulate optimum meeting location
+        </Typography>
+      </Box>
+      <Engine />
+      <Copyright />
     </div>
     
   );

@@ -47,42 +47,82 @@ export default function AddressForm({ setAddresses }) {
     };
 
     return(
-        <Box sx={{ my: 0, mx: 2 }}>
+        <Box 
+        sx={{ 
+                p: 1,
+                m: 'auto',
+                boxShadow: 1,
+                fontWeight: 'bold',
+             }}
+        >
             {inputList.map((x, i) => {
                 return (
-                    <Grid container key={i} direction="row">
-                        <Grid item xs={5}>
-                            <TextField
-                                name="name"
-                                placeholder="Enter Name"
-                                value={x.name}
-                                onChange={e => handleInputChange(e, i)}
-                                // sx={{ width: '15ch' }}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={5}>
-                            <TextField
-                                // className="ml10"
-                                name="address"
-                                placeholder="Enter address"
-                                value={x.address}
-                                onChange={e => handleInputChange(e, i)}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={2}>
-                            <IconButton onClick={() => handleRemoveClick(i)} >
-                                <ClearIcon/>
-                            </IconButton>
-                        </Grid>
-                    </Grid>
+                    <Box 
+                        key={i}                  
+                        component="form"
+                        sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', md: 'row' },
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            '& > :not(style)': { m: 0.5, p:0.5},
+                            boxShadow: 1,
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            name="name"
+                            placeholder="Enter Name"
+                            value={x.name}
+                            onChange={e => handleInputChange(e, i)}
+                            // sx={{
+                            //     width: '25ch'
+                            // }}
+                        />
+                        <TextField
+                            name="address"
+                            placeholder="Enter address"
+                            value={x.address}
+                            onChange={e => handleInputChange(e, i)}
+                            // sx={{
+                            //     width: '25ch'
+                            // }}
+                        />
+                        <IconButton onClick={() => handleRemoveClick(i)} sx={{width:'24px'}} >
+                            <ClearIcon/>
+                        </IconButton>
+                    </Box>
                 );
             })}
-            <Grid item xs={12}>
-                <Button fullWidth variant='contained' onClick={handleAddClick} key="Add person">Add person</Button>
-                <Button fullWidth variant='contained' onClick={handleSubmit}>Submit addresses</Button>
-            </Grid>
+            
+            <Box
+                component="form"
+                sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    '& > :not(style)': { m: 0.5 },
+                    boxShadow: 1,
+                }}
+            >
+                <Button variant='contained' onClick={handleAddClick} key="Add person" sx={{width: '25ch' }}>Add person</Button>
+                <Button variant='contained' onClick={handleSubmit} sx={{width: '25ch' }}>Submit addresses</Button>
+                <IconButton 
+                    // TODO: reaplce this with unreponsive box
+                    onClick={() => handleRemoveClick(i)} 
+                    sx={{
+                        width:'24px',
+                    }}
+                >
+                    <ClearIcon 
+                        sx={{
+                            color: 'background.paper',
+                        }}
+                    />
+                </IconButton>
+            </Box>
         </Box>
     );
 };
