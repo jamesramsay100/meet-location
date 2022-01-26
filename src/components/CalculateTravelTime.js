@@ -152,13 +152,15 @@ export default async function calculateTravelTime (coordinates) {
                 "transportation": {
                     "type": "public_transport"
                 },
-                "departure_time": "2022-01-24T08:00:00Z",
+                "departure_time": new Date().toISOString(),
                 "travel_time": 3600,
                 "properties": [
                     "travel_time"
                 ]
             });
         });
+
+        
         return data;
     }
 }

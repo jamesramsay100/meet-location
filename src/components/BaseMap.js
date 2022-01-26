@@ -52,6 +52,7 @@ export default function BaseMap (props) {
     coordinates.forEach(coordinate => {
         const marker = new mapboxgl.Marker({ "color": "#2ECC71" })
             .setLngLat([coordinate.longitude, coordinate.latitude])
+            .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h3>${coordinate.name}</h3>`))
             .addTo(map);
     });
 
@@ -60,7 +61,16 @@ export default function BaseMap (props) {
       //add first travel time as marker
       const marker = new mapboxgl.Marker({ "color": "#3498DB" })
           .setLngLat([travelTimes[0].longitude, travelTimes[0].latitude])
+          .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h3>${travelTimes[0].name}</h3><p>Fastest maximum travel time: ${parseInt(travelTimes[0].maxTime/60)} minutes</p>`))
           .addTo(map);
+
+      //sort travel times by maxTime ascending
+      const sortedTravelTimes = travelTimes.sort((a, b) => (a.averageTime > b.averageTime) ? 1 : -1);
+      const marker2 = new mapboxgl.Marker({ "color": "#D35400" })
+          .setLngLat([sortedTravelTimes[0].longitude, sortedTravelTimes[0].latitude])
+          .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h4>${sortedTravelTimes[0].name}</h4><p>Average travel: ${parseInt(sortedTravelTimes[0].averageTime/60)} minutes</p>`))
+          .addTo(map);
+      
     }
 
 
