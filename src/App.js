@@ -17,7 +17,6 @@ export default function App() {
         // alignItems: 'center'
       }}
     > 
-      <Title />
       <Engine />
       <Copyright />
     </div>

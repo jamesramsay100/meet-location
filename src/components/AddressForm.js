@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { TextField, Button } from '@mui/material';
 import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from '@mui/icons-material/Clear';
+import Divider from '@mui/material/Divider';
 
 
 /**
@@ -46,13 +47,14 @@ export default function AddressForm({ setAddresses }) {
         sx={{ 
                 p: 1,
                 m: 'auto',
-                boxShadow: 1,
-                fontWeight: 'bold',
+                // boxShadow: 1,
+                // fontWeight: 'bold',
              }}
         >
             {inputList.map((x, i) => {
                 return (
-                    <Box 
+                    <Box key={i}>
+                        <Box 
                         key={i}                  
                         component="form"
                         sx={{
@@ -61,14 +63,15 @@ export default function AddressForm({ setAddresses }) {
                             alignItems: 'center',
                             justifyContent: 'center',
                             '& > :not(style)': { m: 0.5, p:0.5},
-                            boxShadow: 1,
+                            // boxShadow: 1,
                         }}
                         noValidate
                         autoComplete="off"
                     >
                         <TextField
                             name="name"
-                            placeholder="Enter Name"
+                            label="Name"
+                            // placeholder="Enter Name"
                             value={x.name}
                             onChange={e => handleInputChange(e, i)}
                             // sx={{
@@ -77,17 +80,19 @@ export default function AddressForm({ setAddresses }) {
                         />
                         <TextField
                             name="address"
-                            placeholder="Enter address"
+                            label="Address"
                             value={x.address}
                             onChange={e => handleInputChange(e, i)}
                             // sx={{
                             //     width: '25ch'
                             // }}
                         />
+                        
                         <IconButton onClick={() => handleRemoveClick(i)} sx={{width:'24px'}} >
                             <ClearIcon/>
                         </IconButton>
                     </Box>
+                </Box>
                 );
             })}
             
@@ -95,28 +100,19 @@ export default function AddressForm({ setAddresses }) {
                 component="form"
                 sx={{
                     display: 'flex',
-                    flexDirection: { xs: 'column', md: 'row' },
-                    alignItems: 'center',
                     justifyContent: 'center',
-                    '& > :not(style)': { m: 0.5 },
-                    boxShadow: 1,
                 }}
             >
-                <Button variant='contained' onClick={handleAddClick} key="Add person" sx={{width: '25ch' }}>Add person</Button>
-                <Button variant='contained' onClick={handleSubmit} sx={{width: '25ch' }}>Submit addresses</Button>
-                <IconButton 
-                    // TODO: reaplce this with unreponsive box
-                    onClick={() => handleRemoveClick(i)} 
-                    sx={{
-                        width:'24px',
-                    }}
-                >
-                    <ClearIcon 
-                        sx={{
-                            color: 'background.paper',
-                        }}
-                    />
-                </IconButton>
+                <Button variant='contained' onClick={handleAddClick} key="Add person" sx={{width: '50ch', height:30 }}>Add person</Button>
+            </Box>
+            <Box
+                component="form"
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <Button variant='contained' onClick={handleSubmit} sx={{width: '50ch', height:30 }}>Calculate meeting point</Button>
             </Box>
         </Box>
     );
