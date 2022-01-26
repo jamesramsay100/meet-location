@@ -1,11 +1,7 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Copyright from './components/Copyright';
 import Engine from './components/Engine';
+import Title from './components/Title';
 
 
 export default function App() {
@@ -16,25 +12,15 @@ export default function App() {
       style={{
         width: '100%',
         height: '100vh',
-        textAlign: "center"
+        textAlign: "center",
+        backgroundColor: '#F2F3F4',
+        // alignItems: 'center'
       }}
     > 
-      <Grid 
-        // grid container just fills width and aligns content to center
-        id="container"
-        container
-        direction="column"
-        alignItems="center"
-      > 
-        <Box sx={{ my: 4, mx: 2 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Calulate optimum meeting location
-          </Typography>
-        </Box>
-        <Engine />
-        <Copyright />
-      </Grid>
+      <Engine />
+      <Copyright />
     </div>
     
   );
 }
+

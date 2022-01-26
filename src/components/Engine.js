@@ -4,7 +4,9 @@ import AddressForm from './AddressForm';
 import addressesToCoordinates from './AddressesToCoordinates';
 import calculateTravelTime from './CalculateTravelTime';
 import BaseMap from './BaseMap';
-
+import Box from '@mui/material/Box';
+import Title from './Title';
+import Divider from '@mui/material/Divider';
 
 /**
  * 
@@ -19,6 +21,7 @@ export default function Engine() {
     const [coordinates, setCoordinates] = useState([]);  // names and lat-long coordinates
     const [travelTimes, setTravelTimes] = useState([]);  // names and travel times
 
+
     // update coordinates when addresses change
     useEffect(() => {
         addressesToCoordinates(addresses).then(coordinates => setCoordinates(coordinates));
@@ -31,11 +34,21 @@ export default function Engine() {
     }, [coordinates]);
 
     return(
-        <div>
-            <AddressForm setAddresses={setAddresses} />
+        <Box
+            m='auto'  // centralise
+            sx={{
+                maxWidth: '800px',  // no need to use full width on large monitors
+                bgcolor: 'background.paper',
+                borderRadius: '6px',
+                p: 0
+            }}
+        >
+            <Title />
             <BaseMap coordinates={coordinates} travelTimes={travelTimes}/>
-            <div style={{ marginTop: 20, fontSize: '10px' }}>Coordinates for debugging...</div>
-            <div style={{ fontSize: '10px' }}>{JSON.stringify(coordinates)}</div>
-        </div>
+            <Divider>Enter starting location for each person</Divider>
+            <AddressForm setAddresses={setAddresses} />
+            {/* <div style={{ marginTop: 20, fontSize: '10px' }}>Coordinates for debugging...</div>
+            <div style={{ fontSize: '10px' }}>{JSON.stringify(coordinates)}</div> */}
+        </Box>
     );
 };
