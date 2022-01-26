@@ -42,11 +42,9 @@ export default function BaseMap (props) {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [averageLng, averageLat],
       zoom: 9,
+      attributionControl: false
     });
 
-    // add navigation control
-    const nav = new mapboxgl.NavigationControl();
-    map.addControl(nav, "top-right");   
 
     // add coordinates as markers
     coordinates.forEach(coordinate => {
