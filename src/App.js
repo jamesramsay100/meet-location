@@ -6,6 +6,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Copyright from './components/Copyright';
 import Engine from './components/Engine';
+import Title from './components/Title';
 
 
 export default function App() {
@@ -21,14 +22,11 @@ export default function App() {
         // alignItems: 'center'
       }}
     > 
-      <Box sx={{ my: 4, mx: 2 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Calulate optimum meeting location
-        </Typography>
-      </Box>
+      <Title />
       <Engine />
       <Copyright />
     </div>
     
   );
 }
+
