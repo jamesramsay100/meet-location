@@ -12,16 +12,19 @@ var axios = require('axios');
  */
 export default async function addressesToCoordinates (addresses) {
     
-    var key = process.env.REACT_APP_POSITIONSTACK_KEY
+    var key = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
     const country = 'GB'
     const coordinates = []
+    const endpoint = 'mapbox.places'
 
     await Promise.all(
         addresses.map(async (address) => {
 
+            const url = `https://api.mapbox.com/geocoding/v5/${endpoint}/${address.address}.json&access_token=${key}&country=${country}`
+
             var config = {
                 method: 'get',
-                url: `http://api.positionstack.com/v1/forward?access_key=${key}&query=${address.address}&country=${country}`,
+                url: url,
                 headers: { },
                 data : ''
             }
@@ -31,8 +34,8 @@ export default async function addressesToCoordinates (addresses) {
                     {
                         name: address.name,
                         address: address.address,
-                        latitude: response.data.data[0].latitude,
-                        longitude: response.data.data[0].longitude
+                        latitude: response.features[0].centre[1],
+                        longitude: response.features[0].centre[0]
                     }
                 )
             } catch (error) {
