@@ -20,7 +20,7 @@ export default async function addressesToCoordinates (addresses) {
     await Promise.all(
         addresses.map(async (address) => {
 
-            const url = `https://api.mapbox.com/geocoding/v5/${endpoint}/${address.address}.json&access_token=${key}&country=${country}`
+            const url = `https://api.mapbox.com/geocoding/v5/${endpoint}/${address.address}.json?access_token=${key}&country=${country}`
 
             var config = {
                 method: 'get',
