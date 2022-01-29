@@ -30,12 +30,13 @@ export default async function addressesToCoordinates (addresses) {
             }
             try {
                 const response = await axios(config)
+                console.log(response)
                 coordinates.push(
                     {
                         name: address.name,
                         address: address.address,
-                        latitude: response.features[0].centre[1],
-                        longitude: response.features[0].centre[0]
+                        latitude: response.data.features[0].center[1],
+                        longitude: response.data.features[0].center[0]
                     }
                 )
             } catch (error) {
